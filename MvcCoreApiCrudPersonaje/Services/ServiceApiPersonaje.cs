@@ -87,9 +87,11 @@ namespace MvcCoreApiCrudPersonaje.Services
             }
         }
 
-        public async Task UpdatePErsonajeASync(int idperso, string nombre, string imagen, int idserie)
+        public async Task UpdatePErsonajeASync
+            (int idperso, string nombre, string imagen, int idserie)
+
         {
-            using(HttpClient client=new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 string request = "/api/personajes";
                 client.BaseAddress = new Uri(this.UrlAPi);
@@ -99,15 +101,15 @@ namespace MvcCoreApiCrudPersonaje.Services
                     new Personaje
                     {
                         IdPersonaje = idperso,
-                        NombrePersonaje = nombre,
-                        Imagen = imagen,
+                        NombrePersonaje=nombre,
+                        Imagen=imagen,
                         IdSerie = idserie
                     };
                 string json = JsonConvert.SerializeObject(per);
                 StringContent content =
                     new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response =
-                    await client.PostAsync(request, content);
+                    await client.PutAsync(request, content);
             }
         }
     }
