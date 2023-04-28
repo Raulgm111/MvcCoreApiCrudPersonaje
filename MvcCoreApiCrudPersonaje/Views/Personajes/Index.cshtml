@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MvcCoreApiCrudPersonaje.Models.Personaje>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+                       <a asp-controller="Personajes"
+                   asp-action="Create"
+                   class="btn btn-outline-info">
+                        Create
+                    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPersonaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombrePersonaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSerie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPersonaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombrePersonaje)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="150px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSerie)
+            </td>
+            <td>
+                    <a asp-controller="Personajes"
+                   asp-action="Details"
+                   asp-route-idperso="@item.IdPersonaje"
+                   class="btn btn-outline-info">
+                        Details
+                    </a>
+                    <a asp-controller="Personajes"
+                   asp-action="Edit"
+                   asp-route-idperso="@item.IdPersonaje"
+                   class="btn btn-outline-success">
+                        Update
+                    </a>
+                    <a asp-controller="Personajes"
+                   asp-action="Delete"
+                   asp-route-idperso="@item.IdPersonaje"
+                   class="btn btn-outline-danger">
+                        Delete
+                    </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
